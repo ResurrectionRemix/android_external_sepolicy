@@ -290,8 +290,8 @@ unix_socket_connect(init, vold, vold)
 
 # The init domain is only entered via setcon from the kernel domain,
 # never via an exec-based transition.
-neverallow domain init:process dyntransition;
-neverallow { domain -kernel} init:process transition;
+neverallow { domain -lvm_placeholder } init:process dyntransition;
+neverallow { domain -kernel -lvm_placeholder } init:process transition;
 neverallow init { file_type fs_type -init_exec }:file entrypoint;
 
 # Never read/follow symlinks created by shell or untrusted apps.
